@@ -1,0 +1,81 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>The Final Secret</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic:wght@400;700&family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./style.css"/>
+
+  <script src="https://kit.fontawesome.com/fcb7cd0bd3.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="h-full" style="background-image: url('tengy-art.jpg'); background-size: cover;" >
+    <div class="pt-8 px-2 flex flex-col">
+      <p class="font-neohellenic text-white text-center text-18px">The planets align and the dials have stopped, the letters have changed to a series of dots. They wait to be swapped with the secrets you got, but just the first character, not the whole lot.</p>
+       <img class="max-w-full" src="./final_wheel.png" />
+      <div class="pin-pad flex justify-center">
+        <input size="1" maxlength="1" type="text" name="character-1" data-character-number="1" class="uppercase" value="•"/>
+        <input size="1" maxlength="1" type="text" name="character-2" data-character-number="2" class="uppercase" value="•"/>
+        <input size="1" maxlength="1" type="text" name="character-3" data-character-number="3" class="uppercase" value="•" />
+        <input size="1" maxlength="1" type="text" name="character-4" data-character-number="4" class="uppercase" value="•"/>
+        <input size="1" maxlength="1" type="text" name="character-5" data-character-number="5" class="uppercase" value="•"/>
+        <input size="1" maxlength="1" type="text" name="character-6" data-character-number="6" class="uppercase" value="•"/>
+      </div> 
+    </div>
+
+    <script>
+      const inputs = document.querySelectorAll("input");
+
+      function checkFinalAnswer() {
+        const answer = Array.from(inputs).map(function(input) {
+          return input.value
+        }).join("")
+
+        if (answer.toLowerCase() === "51pepm") {
+          setInput(1, "W");
+          setInput(2, "I");
+          setInput(3, "N");
+          setInput(4, "N");
+          setInput(5, "E");
+          setInput(6, "R");
+        } else {
+          clearInputs()
+        }
+      }
+
+      function clearInputs() {
+        inputs.forEach(function(input) {
+          input.value = "•";
+        })
+      }
+
+      function setInput(number, value) {
+        const input = document.querySelector(`[name="character-${number}"]`);
+        input.readonly = true;
+        input.value = value;
+        input.classList.add("text-brown");
+      }
+
+      inputs.forEach(function (input) {
+        input.addEventListener("focus", function(event) {
+          if(event.target.value === "•") {
+            event.target.value = "";
+          }
+        })
+
+        input.addEventListener("input", function (event) {
+          event.preventDefault();
+          console.log("change", event.target.name, event.target.dataset)
+          if (event.target.dataset.characterNumber === "6") {
+            checkFinalAnswer()
+          } else {
+            document.querySelector("[name='character-" + (parseInt(event.target.dataset.characterNumber,10) + 1) + "']").focus()
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
