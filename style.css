@@ -6,6 +6,13 @@ body, html {
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+ol { padding: 0 1rem; } 
+
+li {
+  margin-left: 1rem;
+}
+
+
 /* LAYOUT */
 /* Overflow */
 .overflow-hidden { overflow: hidden; }
@@ -28,6 +35,7 @@ body, html {
 .pt-8 { padding-top: 2rem; }
 
 /* Margin */
+.mb-2 { margin-bottom: 0.5rem; } 
 .mb-8 { margin-bottom: 2rem; } 
 
 /* SIZING */
