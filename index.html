@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>The Locked Door</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic:wght@400;700&family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./style.css"/>
+
+  <script src="https://kit.fontawesome.com/fcb7cd0bd3.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <img src="./tumbler-with-bg.png" class="max-w-full" />
+    <h1 class="heading">The Locked Door</h1>
+    <p class="font-neohellenic text-center text-18px">Working clockwise start each answer at it's corresponding number to reveal the secret word that lines up on the lock tumblers</p>
+
+    <ol class="font-work-sans text-14px">
+      <li>Rapa Nui is the native name of which island which contains many large stone heads?</li>
+      <li>What was the name of Captain Nemo's submarine in Jules Verne's books?</li>
+      <li>What is the world's deepest ocean trench called?</li>
+      <li>Which planet is second furthest from the Sun?</li>
+      <li>Which philosopher discussed Atlantis in many of his books?</li>
+    </ol>
+
+    <h2 class="heading uppercase">Your Solution:</h2>
+    <form class="flex justify-center mb-8" id="form">
+      <input id="answer" name="answer" type="text" class="text-18px rounded"> 
+    <button type="submit" class="bg-brown text-white p-2 rounded"><i class="far fa-unlock"></i></button>
+    </form>
+
+    <script>
+      const form = document.getElementById("form")
+      const answer = document.getElementById("answer")
+      answer.addEventListener("change", function (event) {
+        answer.classList.remove("incorrect")
+      });
+
+      form.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+        event.target.answer.classList.remove("incorrect")
+        if (event.target.answer.value.toLowerCase() === "eureka") {
+          window.location = './eureka.html'
+        } else {
+            event.target.answer.classList.add("incorrect")
+            event.target.answer.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
