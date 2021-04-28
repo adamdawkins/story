@@ -34,7 +34,7 @@
           return input.value
         }).join("")
 
-        if (answer.toLowerCase() === "51pepm") {
+        if (["51pepm", "fopepm"].indexOf(answer.toLowerCase()) !== -1) {
           setInput(1, "W");
           setInput(2, "I");
           setInput(3, "N");
